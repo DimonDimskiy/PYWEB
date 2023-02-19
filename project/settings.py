@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'apps.blog',
     'apps.home',
     'apps.shop',
-
+    'apps.auth_shop'
 
 ]
 
