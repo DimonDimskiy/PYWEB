@@ -50,8 +50,9 @@ class ViewCartDel(View):
     def get(self, request, item_id):
         cart = fill_card_in_session(request)
         cart_id = fill_card_id_in_session(request)
-        cart_item = get_object_or_404(CartItemShop, cart__id=cart_id, product__id=item_id)
-        cart_item.delete()
+        if request.user.is_authenticated:
+            cart_item = get_object_or_404(CartItemShop, cart__id=cart_id, product__id=item_id)
+            cart_item.delete()
         cart.pop(str(item_id))
         request.session['cart'] = cart
         return redirect('cart_shop:cart')
